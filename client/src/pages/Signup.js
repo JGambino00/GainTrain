@@ -25,6 +25,8 @@ function Signup() {
 
   };
  
+  console.log(localStorage.getItem("selectedExercise"));
+
   // remove error message after new submit
   const submit = () => {
     setEmailExisting('')

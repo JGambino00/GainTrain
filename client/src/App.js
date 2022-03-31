@@ -1,6 +1,8 @@
 import Login from './pages/Login.js';
 import Signup from './pages/Signup.js';
 import ExerciseSelectLog from './pages/ExerciseSelectLog';
+import ExerciseInput from './pages/ExerciseInput';
+import CardioInput from './pages/CardioInput';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer.js';
@@ -44,6 +46,9 @@ function App() {
                     <Route path='/login' element={<Login />} checkAuth={checkAuth()} />
                     <Route path='/Signup' element={<Signup />} />
                     <Route path='/ExerciseSelectLog' element={<ExerciseSelectLog/>} />
+                    <Route path='/ExerciseInput' element={<ExerciseInput/>} />
+                    <Route path='/CardioInput' element={<CardioInput/>} />
+                    
                 </Routes>
             </Common.Provider>
             <Footer />

@@ -7,6 +7,16 @@ import Common from "../components/Common";
 
 function ExerciseSelectLog() {
 
+    let handleChange = (event) => {
+        localStorage.setItem("selectedExercise", event.target.value);
+        window.location = "/ExerciseInput";
+    }
+
+    let handleChangeCardio = (event) => {
+        localStorage.setItem("selectedExercise", event.target.value);
+        window.location = "/CardioInput";
+    }
+
     return (
         <body>
             <div align="Center">
@@ -18,7 +28,7 @@ function ExerciseSelectLog() {
                         id="demo-simple-select"
                         // value={age}
                         label="Biceps"
-                    //onChange={handleChange}
+                        onChange={handleChange}
                     >
                         <MenuItem value="Dumbell Curl" name="Dumbell Curl">Dumbell Curl</MenuItem>
                         <MenuItem value="Barbell Curl" name="Barbell Curl">Barbell Curl</MenuItem>
@@ -39,7 +49,7 @@ function ExerciseSelectLog() {
                         id="demo-simple-select"
                         // value={age}
                         label="Triceps"
-                    //onChange={handleChange}
+                        onChange={handleChange}
                     >
                         <MenuItem value="Skullcrushers" name="Skullcrushers">Skullcrushers</MenuItem>
                         <MenuItem value="Tricep Pulldowns" name="Tricep Pulldowns">Tricep Pulldowns</MenuItem>
@@ -60,7 +70,7 @@ function ExerciseSelectLog() {
                         id="demo-simple-select"
                         // value={age}
                         label="Shoulders"
-                        //onChange={handleChange}
+                        onChange={handleChange}
                     >
                         <MenuItem value="Barbell Press" name="Barbell Press">Barbell Press</MenuItem>
                         <MenuItem value="Dumbbell Press" name="Dumbbell Press">Dumbbell Press</MenuItem>
@@ -83,7 +93,7 @@ function ExerciseSelectLog() {
                         id="demo-simple-select"
                         // value={age}
                         label="Legs"
-                    //onChange={handleChange}
+                        onChange={handleChange}
                     >
                         <MenuItem value="Squat" name="Squat">Squat</MenuItem>
                         <MenuItem value="Lunge" name="Lunge">Lunge</MenuItem>
@@ -109,7 +119,7 @@ function ExerciseSelectLog() {
                         id="demo-simple-select"
                         // value={age}
                         label="Chest"
-                    //onChange={handleChange}
+                        onChange={handleChange}
                     >
                         <MenuItem value="Dumbbell Bench Press" name="Dumbbell Bench Press">Dumbbell Bench Press</MenuItem>
                         <MenuItem value="Barbell Bench Press" name="Barbell Bench Press">Barbell Bench Press</MenuItem>
@@ -134,7 +144,7 @@ function ExerciseSelectLog() {
                         id="demo-simple-select"
                         // value={age}
                         label="Back"
-                    //onChange={handleChange}
+                        onChange={handleChange}
                     >
                         <MenuItem value="Pullups" name="Pullups">Pullups</MenuItem>
                         <MenuItem value="Lat Pulldown" name="Lat Pulldown">Lat Pulldown</MenuItem>
@@ -156,7 +166,7 @@ function ExerciseSelectLog() {
                         id="demo-simple-select"
                         // value={age}
                         label="Abs"
-                    //onChange={handleChange}
+                        onChange={handleChange}
                     >
                         <MenuItem value="Situps" name="Situps">Situps</MenuItem>
                         <MenuItem value="Crunches" name="Crunches">Crunches</MenuItem>
@@ -174,9 +184,9 @@ function ExerciseSelectLog() {
                         id="demo-simple-select"
                         // value={age}
                         label="Cardio"
-                    //onChange={handleChange}
+                        onChange={handleChangeCardio}
                     >
-                        <MenuItem value="Treadmill" name="Treadmill">Treadmill</MenuItem>
+                        <MenuItem value="Treadmill" name="Treadmill" href="/Signup.js">Treadmill</MenuItem>
                         <MenuItem value="Elliptical" name="Elliptical">Elliptical</MenuItem>
                         <MenuItem value="Rowing" name="Rowing">Rowing</MenuItem>
                         <MenuItem value="Spinning" name="Spinning">Spinning</MenuItem>
