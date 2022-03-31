@@ -159,6 +159,29 @@ UserController.post("/Signup", async (req, res) => {
 })
 // end of sign up and login
 
+UserController.post("/submitExercise", (req, res) => {
+
+    let id = req.body.id;
+    let exerciseName = req.body.exerciseName;
+    let sets = req.body.sets; 
+    let reps = req.body.reps;
+    let weight = req.body.weight;
+    let timestamp = Date.now();
+    
+    console.log(req.body);
+ 
+    let state = "INSERT INTO gaintrain.exercises (patientfiles,patientID, timesubmitted) VALUES (?,?,?)"
+    db.query(state, [patientFile, patientID,timeNow],
+        (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("File uploaded!");
+            }
+        }
+    );
+//attempted INSERT INTO patientfiles (patientfiles, patientID, timesubmitted) VALUES (LOAD_FILE('C:/Users/chanj/Downloads/Project_v2'),1,'2022-3-27 12:00:00'); as a test
+});
 
 // clearing cookies on logout
 UserController.post('/Logout', ((req, res) => {
