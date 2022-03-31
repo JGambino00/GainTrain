@@ -30,8 +30,7 @@ class Login extends Component {
         this.setState({ unvalidated: '' })
         this.setState({ wrongCredentials: '' })
         Axios.post('http://localhost:8080/Login', {
-            email: this.state.email,
-            password: this.state.password
+            email: this.state.email
         }, { withCredentials: true }).then(() => {
             //If the login credentials are valid, the user will be logged in
             return new Promise(((resolve, reject) => {
@@ -67,7 +66,7 @@ class Login extends Component {
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
                     <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-                        <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+                        <Avatar sx={{ m: 1, bgcolor: '#ED7014' }}>
                             <LockOpenTwoToneIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
@@ -78,23 +77,13 @@ class Login extends Component {
                             <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email"
                                 autoComplete="email" value={this.state.email}
                                 onChange={(ev) => this.setState({ email: ev.target.value })} autoFocus />
-                            <TextField margin="normal" required fullWidth name="password" label="Password"
-                                type="password" value={this.state.password}
-                                onChange={(ev) => this.setState({ password: ev.target.value })}
-                                id="password" autoComplete="current-password" />
                             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
-                            <Button type="submit" fullWidth variant="contained" onClick={() => this.onLogin()} sx={{ mt: 3, mb: 2 }}>
+                            <Button type="submit" fullWidth variant="contained" onClick={() => this.onLogin()} sx={{ background: '#ED7014', mt: 3, mb: 2 }}>
                                 Sign In
                             </Button>
                             {/* Displays appropriate error message based status send from server */}
                             {this.state.wrongCredentials && this.state.wrongCredentials}
-                            {this.state.unvalidated && this.state.unvalidated}
                             <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                                    </Link>
-                                </Grid>
                                 <Grid item>
                                     <Link href="/Signup" variant="body2">
                                         {"Don't have an account? Sign Up"}

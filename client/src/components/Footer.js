@@ -15,13 +15,13 @@ function StickyFooter() {
         {/* Displaying the footer */}
         <Container maxWidth="sm">
           <Typography variant="body1">
-            COVID-19 Application
+            GainTrain
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {'Copyright © '}
             {/* The copyright leads to the github */}
             <Link color="inherit" href='https://github.com/JeffreyCHChan/SOEN390'>
-              SOENXCLUSIVE
+              GainTrain
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}

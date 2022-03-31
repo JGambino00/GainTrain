@@ -100,13 +100,13 @@ const ResponsiveAppBar = () => {
 
 
     return (
-        <AppBar position="sticky">
+        <AppBar style={{ background: '#ED7014' }} position="sticky">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Button variant="h6" noWrap component="div" href='/' sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }} >
                         <Link href='/' sx={{ color: 'white', textDecoration: 'none' }}>
                             <Typography component="h1" variant="h5">
-                                COVID-19 App
+                                GainTrain
                             </Typography>
                         </Link>
                     </Button>
@@ -134,7 +134,7 @@ const ResponsiveAppBar = () => {
 
                     </Box>
                     <Link href='/' sx={{ color: 'white', textdecoration: 'none', flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        COVID-19 App
+                        GainTrain
                     </Link>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
