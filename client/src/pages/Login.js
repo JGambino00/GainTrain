@@ -5,7 +5,6 @@ import Axios from 'axios';
 import { Component } from "react";
 import { Navigate } from "react-router-dom";
 import Common from "../components/Common";
-import axios from "axios";
 
 
 //handling the login form
