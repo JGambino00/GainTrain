@@ -8,22 +8,9 @@ require('dotenv').config();
 var cookieParser = require('cookie-parser');
 
 const UserController = require("./Controllers/UserController");
-const NotificationController = require("./Controllers/NotificationController");
-const DoctorController = require("./Controllers/DoctorController");
-const AdminController = require("./Controllers/AdminController");
-const ChatController = require("./Controllers/ChatController");
-const ManagerController = require("./Controllers/ManagerController");
-const ScheduleController = require("./Controllers/ScheduleController");
-const PatientController = require("./Controllers/PatientController")
 
 app.use(UserController);
-app.use(NotificationController);
-app.use(ChatController);
-app.use(ManagerController);
-app.use(ScheduleController);
-app.use(AdminController);
-app.use(PatientController);
-app.use(DoctorController);
+
 
 app.use(express.json());
 app.use(cookieParser());
