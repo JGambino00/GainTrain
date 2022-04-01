@@ -3,6 +3,8 @@ import Signup from './pages/Signup.js';
 import ExerciseSelectLog from './pages/ExerciseSelectLog';
 import ExerciseInput from './pages/ExerciseInput';
 import CardioInput from './pages/CardioInput';
+import CardioGraph from './pages/CardioGraph';
+import ExerciseGraph from './pages/ExerciseGraph.js';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer.js';
@@ -48,6 +50,8 @@ function App() {
                     <Route path='/ExerciseSelectLog' element={<ExerciseSelectLog/>} />
                     <Route path='/ExerciseInput' element={<ExerciseInput/>} />
                     <Route path='/CardioInput' element={<CardioInput/>} />
+                    <Route path='/CardioGraph' element={<CardioGraph/>} />
+                    <Route path='/ExerciseGraph' element={<ExerciseGraph/>} />
                     
                 </Routes>
             </Common.Provider>
