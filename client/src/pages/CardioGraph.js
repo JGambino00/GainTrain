@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState, useEffect} from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Button, Paper } from '@mui/material';
 import Axios from 'axios';
@@ -7,13 +8,15 @@ import Common from "../components/Common";
 
 function CardioGraph() {
 
-    let exercise = localStorage.getItem("selectedExercise");
+   const [cardioData, setCardioData] = useState([]);
+    let stopEffect = 1;
 
-    let cardioData = () => { //This function gets the list of all the patients previous symptom forms (to be rendered on a page in later sprint)
+    useEffect(() => {
         Axios.get("http://localhost:8080/cardioData", { params: { id: localStorage.getItem("id"), exerciseName: localStorage.getItem('selectedExercise') } }).then((response) => {
-            console.log("success");
+            console.log(response);
+            setCardioData(response.data);
         });
-    }
+    }, [stopEffect])
 
     return (
         <>

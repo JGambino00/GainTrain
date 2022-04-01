@@ -1,6 +1,7 @@
 import Login from './pages/Login.js';
 import Signup from './pages/Signup.js';
 import ExerciseSelectLog from './pages/ExerciseSelectLog';
+import ExerciseSelectGraph from './pages/ExerciseSelectGraph';
 import ExerciseInput from './pages/ExerciseInput';
 import CardioInput from './pages/CardioInput';
 import CardioGraph from './pages/CardioGraph';
@@ -48,6 +49,7 @@ function App() {
                     <Route path='/login' element={<Login />} checkAuth={checkAuth()} />
                     <Route path='/Signup' element={<Signup />} />
                     <Route path='/ExerciseSelectLog' element={<ExerciseSelectLog/>} />
+                    <Route path='/ExerciseSelectGraph' element={<ExerciseSelectGraph/>} />
                     <Route path='/ExerciseInput' element={<ExerciseInput/>} />
                     <Route path='/CardioInput' element={<CardioInput/>} />
                     <Route path='/CardioGraph' element={<CardioGraph/>} />

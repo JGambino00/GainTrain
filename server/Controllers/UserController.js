@@ -213,7 +213,6 @@ UserController.get("/exerciseData", (req, res) => {
     //parameters:
     let id = req.query.id;
     let exerciseName = req.query.exerciseName;
-    //returns: (FName of patient, LName of patient, phone of patient, email of patient, ID of patient) ,timestamp
     let state = "SELECT Sets, Reps, Weight FROM gaintrain.exercises WHERE ID = ? AND ExerciseName = ? ORDER BY Timestamp ASC;"
     db.query(state, [id, exerciseName], (err, result) => {
         if (err) {
@@ -228,7 +227,6 @@ UserController.get("/cardioData", (req, res) => {
     //parameters:
     let id = req.query.id;
     let exerciseName = req.query.exerciseName;
-    //returns: (FName of patient, LName of patient, phone of patient, email of patient, ID of patient) ,timestamp
     let state = "SELECT Mins, Speed FROM gaintrain.exercises WHERE ID = ? AND ExerciseName = ? ORDER BY Timestamp ASC;"
     db.query(state, [id, exerciseName], (err, result) => {
         if (err) {
