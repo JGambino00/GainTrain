@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useState, useEffect} from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Button, Paper } from '@mui/material';
+import { Chart, ArgumentAxis, ValueAxis, LineSeries, Title, Legend,} from '@devexpress/dx-react-chart-material-ui';
 import Axios from 'axios';
 import { Navigate } from "react-router-dom";
 import Common from "../components/Common";
@@ -20,11 +21,42 @@ function ExerciseGraph() {
         });
     }, [stopEffect]);
 
+    let setRep = [];
+    let totalReps = [];
+    let index = 0;
+
+    exerciseData.map(el => setRep.push([el.Sets, el.Reps]))
+
+    for(let i = 0; i<setRep.length; i++){
+        totalReps[i] = {totReps: setRep[i][0] * setRep[i][1], time: exerciseData[i].Timestamp}
+    }
+
     return (
         <>
             <body>
             <div align="Center">
-            
+            <h1>{localStorage.getItem('selectedExercise')}</h1>
+            <Paper>
+                <br></br>
+                <br></br>
+
+                <Chart data={exerciseData}>
+                    <Title text={`Weight Progress`}/>
+                    <ArgumentAxis />
+                    <ValueAxis />
+                    <LineSeries valueField='Weight' argumentField='Timestamp' />
+                </Chart>
+
+                <br></br>
+                <br></br>
+
+                <Chart data={totalReps}>
+                    <Title text={`Rep Progress`}/>
+                    <ArgumentAxis />
+                    <ValueAxis />
+                    <LineSeries valueField='totReps' argumentField='time' />
+                </Chart>
+            </Paper>
             </div>
 
             </body>
