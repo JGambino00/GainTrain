@@ -167,11 +167,13 @@ UserController.post("/submitExercise", (req, res) => {
     let reps = req.body.reps;
     let weight = req.body.weight;
     let timestamp = Date.now();
+    let mins = 0;
+    let speed = 0;
     
     console.log(req.body);
  
-    let state = "INSERT INTO gaintrain.exercises (patientfiles,patientID, timesubmitted) VALUES (?,?,?)"
-    db.query(state, [patientFile, patientID,timeNow],
+    let state = "INSERT INTO gaintrain.exercises (ID, ExerciseName, Sets, Reps, Weight, Mins, Speed, Timestamp) VALUES (?,?,?,?,?,?,?,?)"
+    db.query(state, [id, exerciseName, sets, reps, weight, mins, speed, timestamp],
         (err, results) => {
             if (err) {
                 console.log(err);
@@ -180,7 +182,61 @@ UserController.post("/submitExercise", (req, res) => {
             }
         }
     );
-//attempted INSERT INTO patientfiles (patientfiles, patientID, timesubmitted) VALUES (LOAD_FILE('C:/Users/chanj/Downloads/Project_v2'),1,'2022-3-27 12:00:00'); as a test
+});
+
+UserController.post("/submitCardio", (req, res) => {
+
+    let id = req.body.id;
+    let exerciseName = req.body.exerciseName;
+    let sets = 0; 
+    let reps = 0;
+    let weight = 0;
+    let timestamp = Date.now();
+    let mins = req.body.mins;
+    let speed = req.body.speed;
+    
+    console.log(req.body);
+ 
+    let state = "INSERT INTO gaintrain.exercises (ID, ExerciseName, Sets, Reps, Weight, Mins, Speed, Timestamp) VALUES (?,?,?,?,?,?,?,?)"
+    db.query(state, [id, exerciseName, sets, reps, weight, mins, speed, timestamp],
+        (err, results) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("File uploaded!");
+            }
+        }
+    );
+});
+
+UserController.get("/exerciseData", (req, res) => {
+    //parameters:
+    let id = req.query.id;
+    let exerciseName = req.query.exerciseName;
+    //returns: (FName of patient, LName of patient, phone of patient, email of patient, ID of patient) ,timestamp
+    let state = "SELECT Sets, Reps, Weight FROM gaintrain.exercises WHERE ID = ? AND ExerciseName = ? ORDER BY Timestamp ASC;"
+    db.query(state, [id, exerciseName], (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        }
+    })
+});
+
+UserController.get("/cardioData", (req, res) => {
+    //parameters:
+    let id = req.query.id;
+    let exerciseName = req.query.exerciseName;
+    //returns: (FName of patient, LName of patient, phone of patient, email of patient, ID of patient) ,timestamp
+    let state = "SELECT Mins, Speed FROM gaintrain.exercises WHERE ID = ? AND ExerciseName = ? ORDER BY Timestamp ASC;"
+    db.query(state, [id, exerciseName], (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        }
+    })
 });
 
 // clearing cookies on logout
