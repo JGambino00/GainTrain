@@ -13,6 +13,7 @@ import Navbar from './components/Navbar.js';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Home from './pages/Home';
+import Main from './pages/Main';
 
 import Cookies from 'js-cookie';
 import Common from './components/Common'
@@ -54,6 +55,7 @@ function App() {
                     <Route path='/CardioInput' element={<CardioInput/>} />
                     <Route path='/CardioGraph' element={<CardioGraph/>} />
                     <Route path='/ExerciseGraph' element={<ExerciseGraph/>} />
+                    <Route path='/Main' element={<Main/>} />
                     
                 </Routes>
             </Common.Provider>

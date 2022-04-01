@@ -41,29 +41,9 @@ const ResponsiveAppBar = () => {
                 pages.push(['Login', 'Login']);
                 pages.push(['Signup', 'Signup'])
             }
-            if (localStorage.getItem('role') == 'Patient') {
-                pages.push(['PatientProfile', 'profile']);
-                pages.push(['PatientAppointment', 'Appointment']);
-
-            }
-            if (localStorage.getItem('role') == 'Admin') {
-                pages.push(['AdminDashboard', 'Dashboard']);
-                pages.push(['AdminPatientDashboard', 'Patients']);
-            }
-            if (localStorage.getItem('role') == 'Doctor') {
-                pages.push(['DoctorDashboard', 'Dashboard']);
-                pages.push(['DoctorPatientProfile', 'Patients']);
-                pages.push(['DoctorSchedule', 'Schedule']);
-
-            }
-            if (localStorage.getItem('role') == 'Health Official') {
-                pages.push(['HealthOfficialPatientProfile', 'Patients']);
-
-            }
-            if (localStorage.getItem('role') == 'Immigration Officer') {
-                pages.push(['ImmigrationOfficerPatientProfile', 'Patients']);
-            }
+            
             if (localStorage.getItem('role') != null) {
+                pages.push(['Main', 'Main']);
                 pages.push(['Logout', 'Logout']);
             }
         }
