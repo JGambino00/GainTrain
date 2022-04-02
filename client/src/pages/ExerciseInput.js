@@ -20,8 +20,11 @@ function ExerciseInput() {
             sets: data.get('Sets'),
             reps: data.get('Reps'),
             weight: data.get('Weight')
-        }).then(() => {
-            console.log("success")
+        }).then((result) => {
+            window.location = "/ExerciseSelectLog";
+        }).catch((err) => {
+            console.log(err);
+            window.location = "/ExerciseSelectLog";
         });
     }
 

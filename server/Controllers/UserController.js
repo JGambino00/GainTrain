@@ -200,7 +200,7 @@ UserController.post("/submitExercise", (req, res) => {
                             if (err) {
                                 console.log(err);
                             }else{
-                                res.send("Success");
+                                res.send(result);
                             } 
                         }
                     );
@@ -213,7 +213,7 @@ UserController.post("/submitExercise", (req, res) => {
                             if (err) {
                                 console.log(err);
                             }else{
-                                res.send("Success");
+                                res.send(result);
                             } 
                         }
                     );
@@ -259,8 +259,6 @@ UserController.post("/submitCardio", (req, res) => {
         (err, results) => {
             if (err) {
                 console.log(err);
-            } else {
-                res.send("File uploaded!");
             }
         }
     );
@@ -284,7 +282,7 @@ UserController.post("/submitCardio", (req, res) => {
                             if (err) {
                                 console.log(err);
                             }else{
-                                res.send("Success");
+                                res.send(result);
                             } 
                         }
                     );
@@ -297,7 +295,7 @@ UserController.post("/submitCardio", (req, res) => {
                             if (err) {
                                 console.log(err);
                             }else{
-                                res.send("Success");
+                                res.send(result);
                             } 
                         }
                     );

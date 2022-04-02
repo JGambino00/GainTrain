@@ -6,7 +6,7 @@ import Axios from 'axios';
 import { Navigate } from "react-router-dom";
 import Common from "../components/Common";
 
-function ExerciseInput() {
+function CardioInput() {
 
     let exercise = localStorage.getItem("selectedExercise");
 
@@ -19,8 +19,9 @@ function ExerciseInput() {
             setXpLevel(response.data);
         });
     }, [stopEffect])
+    
 
-    let submitCardio = (event) => { //When clicking the REQUEST SYMPTOM FORM button, this will update the SymptomRequested attribute in the patient tale to true
+    let submitCardio = (event) => { 
         console.log(event.currentTarget);
         const data = new FormData(event.currentTarget)
         console.log('hello');
@@ -29,8 +30,11 @@ function ExerciseInput() {
             exerciseName: localStorage.getItem("selectedExercise"),
             mins: data.get('Minutes'),
             speed: data.get('Machine Level')
-        }).then(() => {
-            console.log("success")
+        }).then((result) => {
+            window.location = "/ExerciseSelectLog";
+        }).catch((err) => {
+            console.log(err);
+            window.location = "/ExerciseSelectLog";
         });
     }
 
@@ -82,4 +86,4 @@ function ExerciseInput() {
 
 }
 
-export default ExerciseInput;
+export default CardioInput;
