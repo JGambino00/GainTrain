@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Button, Paper, Link } from '@mui/material';
 import Axios from 'axios';
@@ -16,83 +16,87 @@ function ExerciseInput() {
         const data = new FormData(event.currentTarget)
         console.log('hello');
         Axios.post("http://localhost:8080/submitExercise", {
-            id: localStorage.getItem("id"), 
+            id: localStorage.getItem("id"),
             exerciseName: localStorage.getItem("selectedExercise"),
             sets: data.get('Sets'),
             reps: data.get('Reps'),
             weight: data.get('Weight')
         }).then((result) => {
- 
+
         }).catch((err) => {
             console.log(err);
 
         });
     }
 
-    const [xpLevel, setXpLevel] = useState([]);
     let stopEffect = 1;
 
     useEffect(() => {
-        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
-            console.log(response);
-            setXpLevel(response.data);
+        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
+            localStorage.setItem("xp", response.data[0].Experience);
+            localStorage.setItem("lev", response.data[0].Level);
+            console.log(response.data);
+
         });
     }, [stopEffect])
 
     return (
         <>
-        {
-        localStorage.getItem("id") == null && <Navigate to={"/"} refresh={true} />
-        }
+            {
+                localStorage.getItem("id") == null && <Navigate to={"/"} refresh={true} />
+            }
             <body>
-            <div align="Center">
-                <h1 id='change'>{exercise}</h1>
-            <Paper elevation={0} component="form" onSubmit={submitExercise}>
-                <FormControl onSubmit={submitExercise}>
-                    <TextField
-                        id="outlined-number"
-                        label="Sets"
-                        type="number"
-                        name='Sets'
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+            <div align="Right">
+                    <p>Lvl.{localStorage.getItem("lev")} {localStorage.getItem("xp")}/10</p>
+                </div>
+                <div align="Center">
+                    <h1 id='change'>{exercise}</h1>
+                    <Paper elevation={0} component="form" onSubmit={submitExercise}>
+                        <FormControl onSubmit={submitExercise}>
+                            <TextField
+                                id="outlined-number"
+                                label="Sets"
+                                type="number"
+                                name='Sets'
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
 
-                    <br></br>
-                    <br></br>
+                            <br></br>
+                            <br></br>
 
-                    <TextField
-                        id="outlined-number"
-                        label="Reps"
-                        type="number"
-                        name='Reps'
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+                            <TextField
+                                id="outlined-number"
+                                label="Reps"
+                                type="number"
+                                name='Reps'
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
 
-                    <br></br>
-                    <br></br>
-                    
-                    <TextField
-                        id="outlined-number"
-                        label="Weight"
-                        type="number"
-                        name='Weight'
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+                            <br></br>
+                            <br></br>
 
-                    <br></br>
+                            <TextField
+                                id="outlined-number"
+                                label="Weight"
+                                type="number"
+                                name='Weight'
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
 
-                    <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} type="submit" variant="contained">Submit</Button>
-                    <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} href='/ExerciseSelectLog' variant="contained">Back</Button>
-                    
-                </FormControl>
-            </Paper>
-            </div>
+                            <br></br>
+
+                            <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} type="submit" variant="contained">Submit</Button>
+                            <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} href='/ExerciseSelectLog' variant="contained">Back</Button>
+
+                        </FormControl>
+                    </Paper>
+                </div>
 
             </body>
         </>

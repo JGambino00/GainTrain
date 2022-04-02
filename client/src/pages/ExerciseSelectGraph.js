@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import { FormControl, InputLabel, Select, MenuItem, Grid } from '@mui/material';
 import Axios from 'axios';
@@ -8,13 +8,13 @@ import Common from "../components/Common";
 
 function ExerciseSelectGraph() {
 
-    const [xpLevel, setXpLevel] = useState([]);
     let stopEffect = 1;
 
     useEffect(() => {
-        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
-            console.log(response);
-            setXpLevel(response.data);
+        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
+            localStorage.setItem("xp", response.data[0].Experience);
+            localStorage.setItem("lev", response.data[0].Level);
+            console.log(response.data);
         });
     }, [stopEffect])
 
@@ -30,6 +30,9 @@ function ExerciseSelectGraph() {
 
     return (
         <body>
+            <div align="Right">
+                    <p>Lvl.{localStorage.getItem("lev")} {localStorage.getItem("xp")}/10</p>
+                </div>
             <div align="Center">
                 <h1>Select an Exercise to See Progress:</h1>
                 <FormControl style={{ minWidth: 250 }}>
@@ -102,7 +105,7 @@ function ExerciseSelectGraph() {
                         label="Cardio"
                         onChange={handleChangeCardio}
                     >
-                        
+
                         <MenuItem value="Elliptical" name="Elliptical">Elliptical</MenuItem>
                         <MenuItem value="Rowing" name="Rowing">Rowing</MenuItem>
                         <MenuItem value="Spinning" name="Spinning">Spinning</MenuItem>

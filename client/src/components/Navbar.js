@@ -18,6 +18,8 @@ const ResponsiveAppBar = () => {
     const [xpLevel, setXpLevel] = React.useState([]);
     var [count, setCount] = React.useState(); //number of notifications set as count
 
+    let test = 1;
+
     //Handles all the possiblity for the menu
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -129,7 +131,6 @@ const ResponsiveAppBar = () => {
                         ))}
                         
                     </Box>
-                    
                 </Toolbar>
             </Container>
         </AppBar>

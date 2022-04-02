@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Paper, Button } from '@mui/material';
 import Axios from 'axios';
@@ -10,23 +10,23 @@ function CardioInput() {
 
     let exercise = localStorage.getItem("selectedExercise");
 
-    const [xpLevel, setXpLevel] = useState([]);
     let stopEffect = 1;
 
     useEffect(() => {
-        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
-            console.log(response);
-            setXpLevel(response.data);
+        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
+            localStorage.setItem("xp", response.data[0].Experience);
+            localStorage.setItem("lev", response.data[0].Level);
+            console.log(response.data);
         });
     }, [stopEffect])
-    
 
-    let submitCardio = (event) => { 
+
+    let submitCardio = (event) => {
         console.log(event.currentTarget);
         const data = new FormData(event.currentTarget)
         console.log('hello');
         Axios.post("http://localhost:8080/submitCardio", {
-            id: localStorage.getItem("id"), 
+            id: localStorage.getItem("id"),
             exerciseName: localStorage.getItem("selectedExercise"),
             mins: data.get('Minutes'),
             speed: data.get('Machine Level')
@@ -41,44 +41,47 @@ function CardioInput() {
 
     return (
         <>
-        {
-        localStorage.getItem("id") == null && <Navigate to={"/"} refresh={true} />
-        }
+            {
+                localStorage.getItem("id") == null && <Navigate to={"/"} refresh={true} />
+            }
             <body>
-            <div align="Center">
-                <h1 id='change'>{exercise}</h1>
-            <Paper elevation={0} component="form" onSubmit={submitCardio}>
-                <FormControl onSubmit={submitCardio}>
-                    <TextField
-                        id="outlined-number"
-                        label="Machine Level"
-                        type="number"
-                        name='Machine Level'
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+            <div align="Right">
+                    <p>Lvl.{localStorage.getItem("lev")} {localStorage.getItem("xp")}/10</p>
+                </div>
+                <div align="Center">
+                    <h1 id='change'>{exercise}</h1>
+                    <Paper elevation={0} component="form" onSubmit={submitCardio}>
+                        <FormControl onSubmit={submitCardio}>
+                            <TextField
+                                id="outlined-number"
+                                label="Machine Level"
+                                type="number"
+                                name='Machine Level'
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
 
-                    <br></br>
-                    <br></br>
+                            <br></br>
+                            <br></br>
 
-                    <TextField
-                        id="outlined-number"
-                        label="Minutes"
-                        type="number"
-                        name='Minutes'
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+                            <TextField
+                                id="outlined-number"
+                                label="Minutes"
+                                type="number"
+                                name='Minutes'
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
 
-                    <br></br>
+                            <br></br>
 
-                    <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} type="submit" variant="contained">Submit</Button>
+                            <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} type="submit" variant="contained">Submit</Button>
 
-                </FormControl>
-            </Paper>
-            </div>
+                        </FormControl>
+                    </Paper>
+                </div>
 
             </body>
         </>
