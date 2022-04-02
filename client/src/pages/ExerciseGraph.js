@@ -30,12 +30,15 @@ function ExerciseGraph() {
 
     let setRep = [];
     let totalReps = [];
+    let weightData = [];
     let index = 0;
 
     exerciseData.map(el => setRep.push([el.Sets, el.Reps]))
-
+    
     for (let i = 0; i < setRep.length; i++) {
-        totalReps[i] = { totReps: setRep[i][0] * setRep[i][1], time: exerciseData[i].Timestamp }
+        //totalReps[i] = { totReps: setRep[i][0] * setRep[i][1], time: exerciseData[i].Timestamp }
+        totalReps[i] = { totReps: setRep[i][0] * setRep[i][1], time: i }
+        weightData[i] = { weight: exerciseData[i].Weight, time: i}
     }
 
     return (
@@ -53,11 +56,11 @@ function ExerciseGraph() {
                         <br></br>
                         <br></br>
 
-                        <Chart data={exerciseData}>
+                        <Chart data={weightData}>
                             <Title text={`Weight Progress`} />
                             <ArgumentAxis />
                             <ValueAxis />
-                            <LineSeries valueField='Weight' argumentField='Timestamp' />
+                            <LineSeries valueField='weight' argumentField='time' />
                         </Chart>
 
                         <br></br>

@@ -78,6 +78,7 @@ function CardioInput() {
                             <br></br>
 
                             <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} type="submit" variant="contained">Submit</Button>
+                            <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} href='/ExerciseSelectLog' variant="contained">Back</Button>
 
                         </FormControl>
                     </Paper>
