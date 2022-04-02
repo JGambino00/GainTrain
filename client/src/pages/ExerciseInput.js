@@ -1,10 +1,11 @@
 import * as React from 'react';
 import {useState, useEffect} from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Button, Paper } from '@mui/material';
+import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Button, Paper, Link } from '@mui/material';
 import Axios from 'axios';
 import { Navigate } from "react-router-dom";
 import Common from "../components/Common";
+
 
 function ExerciseInput() {
 
@@ -21,10 +22,10 @@ function ExerciseInput() {
             reps: data.get('Reps'),
             weight: data.get('Weight')
         }).then((result) => {
-            window.location = "/ExerciseSelectLog";
+ 
         }).catch((err) => {
             console.log(err);
-            window.location = "/ExerciseSelectLog";
+
         });
     }
 
@@ -87,6 +88,7 @@ function ExerciseInput() {
                     <br></br>
 
                     <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} type="submit" variant="contained">Submit</Button>
+                    <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} href='/ExerciseSelectLog' variant="contained">Back</Button>
                     
                 </FormControl>
             </Paper>
