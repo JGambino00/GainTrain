@@ -92,6 +92,9 @@ class Login extends Component {
                         </Box>
                     </Box>
                 </Container>
+                <br></br>
+                <br></br>
+                <br></br>
             </>
         );
     }

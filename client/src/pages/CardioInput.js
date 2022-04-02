@@ -45,7 +45,7 @@ function CardioInput() {
                 localStorage.getItem("id") == null && <Navigate to={"/"} refresh={true} />
             }
             <body>
-            <div align="Right">
+            <div align="Right" style={{marginRight: 25, paddingRight: 25}}>
                     <p>Lvl.{localStorage.getItem("lev")} {localStorage.getItem("xp")}/10</p>
                 </div>
                 <div align="Center">
@@ -84,6 +84,9 @@ function CardioInput() {
                 </div>
 
             </body>
+            <br></br>
+            <br></br>
+            <br></br>
         </>
     );
 

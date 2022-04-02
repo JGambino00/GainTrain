@@ -95,6 +95,9 @@ function Signup() {
           </Box>
         </Box>
       </Container> 
+      <br></br>
+      <br></br>
+      <br></br>
     </>
   );
 }
