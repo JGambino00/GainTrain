@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Button, Paper } from '@mui/material';
 import Axios from 'axios';
 import { Navigate } from "react-router-dom";
 import Common from "../components/Common";
+import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Button, Paper } from '@mui/material';
+import { Chart, ArgumentAxis, ValueAxis, LineSeries, Title, Legend, } from '@devexpress/dx-react-chart-material-ui';
 
 function CardioGraph() {
 
@@ -25,6 +26,21 @@ function CardioGraph() {
 
     }, [stopEffect])
 
+    let minsData = [];
+    let speedData = [];
+    let index = 0;
+
+    
+    for (let i = 0; i < cardioData.length; i++) {
+        minsData[i] = { mins: cardioData[i].Mins, time: i }
+        speedData[i] = { speed: cardioData[i].Speed, time: i}
+    }
+
+    console.log(minsData);
+    console.log(speedData);
+
+    const format = () => tick => tick;
+
     return (
         <>
             {
@@ -36,7 +52,28 @@ function CardioGraph() {
                     <p>Lvl.{localStorage.getItem("lev")} {localStorage.getItem("xp")}/10</p>
                 </div>
                 <div align="Center">
+                <h1>{localStorage.getItem('selectedExercise')}</h1>
+                    <Paper>
+                        <br></br>
+                        <br></br>
 
+                        <Chart data={minsData}>
+                            <Title text={`Minutes Progress`} />
+                            <ArgumentAxis />
+                            <ValueAxis />
+                            <LineSeries valueField='mins' argumentField='time' />
+                        </Chart>
+
+                        <br></br>
+                        <br></br>
+
+                        <Chart data={speedData}>
+                            <Title text={`Speed Progress`} />
+                            <ArgumentAxis />
+                            <ValueAxis />
+                            <LineSeries valueField='speed' argumentField='time' />
+                        </Chart>
+                    </Paper>
                 </div>
 
             </body>
