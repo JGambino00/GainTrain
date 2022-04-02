@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState, useEffect} from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Button, Paper } from '@mui/material';
 import Axios from 'axios';
@@ -24,8 +25,21 @@ function ExerciseInput() {
         });
     }
 
+    const [xpLevel, setXpLevel] = useState([]);
+    let stopEffect = 1;
+
+    useEffect(() => {
+        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
+            console.log(response);
+            setXpLevel(response.data);
+        });
+    }, [stopEffect])
+
     return (
         <>
+        {
+        localStorage.getItem("id") == null && <Navigate to={"/"} refresh={true} />
+        }
             <body>
             <div align="Center">
                 <h1 id='change'>{exercise}</h1>

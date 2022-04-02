@@ -133,13 +133,13 @@ UserController.post("/Signup", async (req, res) => {
 
         let uid;
 
-        let state = `INSERT INTO gaintrain.users (FName, LName, Email) VALUES (?,?,?);`;//figure out how to pass variables i created in
+        let state = `INSERT INTO gaintrain.users (FName, LName, Email, Experience, Level) VALUES (?,?,?,?,?);`;//figure out how to pass variables i created in
 
 
         if (existing === false) {
             //parameters:FName, LName, Email, Password, Validated, Phone, Role
             //returns: 
-            db.query(state, [firstName, lastName, email], function (err, result) {//ID might be removed since it should be auto indent
+            db.query(state, [firstName, lastName, email, 0, 1], function (err, result) {//ID might be removed since it should be auto indent
                 if (err) {
                     console.log(err)
                     res.sendStatus(500);
@@ -161,7 +161,7 @@ UserController.post("/Signup", async (req, res) => {
 
 UserController.post("/submitExercise", (req, res) => {
 
-    let id = req.body.id;
+    var id = req.body.id;
     let exerciseName = req.body.exerciseName;
     let sets = req.body.sets; 
     let reps = req.body.reps;
@@ -174,15 +174,72 @@ UserController.post("/submitExercise", (req, res) => {
  
     let state = "INSERT INTO gaintrain.exercises (ID, ExerciseName, Sets, Reps, Weight, Mins, Speed, Timestamp) VALUES (?,?,?,?,?,?,?,?)"
     db.query(state, [id, exerciseName, sets, reps, weight, mins, speed, timestamp],
-        (err, results) => {
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } 
+        }
+    );
+
+    let state2 = "SELECT Level, Experience FROM gaintrain.users WHERE ID=?"
+    db.query(state2, [id],
+        (err, result) => {
             if (err) {
                 console.log(err);
             } else {
-                res.send("File uploaded!");
+                var currentxp=result[0].Experience;
+                var currentlevel=result[0].Level;
+
+                if(currentxp===9){
+                    let newXp=0;
+                    let newLevel=currentlevel+1;
+
+                    let state3 = "UPDATE gaintrain.users SET Experience=?, Level=? WHERE ID=?"
+                    db.query(state3, [newXp, newLevel, id],
+                        (err, result) => {
+                            if (err) {
+                                console.log(err);
+                            }else{
+                                res.send("Success");
+                            } 
+                        }
+                    );
+                }else{
+                    let newXp=currentxp+1;
+
+                    let state4 = "UPDATE gaintrain.users SET Experience=? WHERE ID=?"
+                    db.query(state4, [newXp, id],
+                        (err, result) => {
+                            if (err) {
+                                console.log(err);
+                            }else{
+                                res.send("Success");
+                            } 
+                        }
+                    );
+                }
             }
         }
     );
+
 });
+
+
+UserController.get("/xpLevel", (req, res) => {
+    let id = req.query.id;
+    let state = "SELECT Experience, Level FROM gaintrain.users WHERE ID=?";
+    db.query(state, [id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(result);
+                res.send(result);
+            }
+        }
+    );
+    
+})
 
 UserController.post("/submitCardio", (req, res) => {
 
@@ -204,6 +261,47 @@ UserController.post("/submitCardio", (req, res) => {
                 console.log(err);
             } else {
                 res.send("File uploaded!");
+            }
+        }
+    );
+
+    let state2 = "SELECT Level, Experience FROM gaintrain.users WHERE ID=?"
+    db.query(state2, [id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                var currentxp=result[0].Experience;
+                var currentlevel=result[0].Level;
+
+                if(currentxp===9){
+                    let newXp=0;
+                    let newLevel=currentlevel+1;
+
+                    let state3 = "UPDATE gaintrain.users SET Experience=?, Level=? WHERE ID=?"
+                    db.query(state3, [newXp, newLevel, id],
+                        (err, result) => {
+                            if (err) {
+                                console.log(err);
+                            }else{
+                                res.send("Success");
+                            } 
+                        }
+                    );
+                }else{
+                    let newXp=currentxp+1;
+
+                    let state4 = "UPDATE gaintrain.users SET Experience=? WHERE ID=?"
+                    db.query(state4, [newXp, id],
+                        (err, result) => {
+                            if (err) {
+                                console.log(err);
+                            }else{
+                                res.send("Success");
+                            } 
+                        }
+                    );
+                }
             }
         }
     );

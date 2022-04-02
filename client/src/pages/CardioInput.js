@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState, useEffect} from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Paper, Button } from '@mui/material';
 import Axios from 'axios';
@@ -8,6 +9,16 @@ import Common from "../components/Common";
 function ExerciseInput() {
 
     let exercise = localStorage.getItem("selectedExercise");
+
+    const [xpLevel, setXpLevel] = useState([]);
+    let stopEffect = 1;
+
+    useEffect(() => {
+        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
+            console.log(response);
+            setXpLevel(response.data);
+        });
+    }, [stopEffect])
 
     let submitCardio = (event) => { //When clicking the REQUEST SYMPTOM FORM button, this will update the SymptomRequested attribute in the patient tale to true
         console.log(event.currentTarget);
@@ -26,6 +37,9 @@ function ExerciseInput() {
 
     return (
         <>
+        {
+        localStorage.getItem("id") == null && <Navigate to={"/"} refresh={true} />
+        }
             <body>
             <div align="Center">
                 <h1 id='change'>{exercise}</h1>

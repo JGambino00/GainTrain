@@ -9,6 +9,7 @@ import Common from "../components/Common";
 function CardioGraph() {
 
    const [cardioData, setCardioData] = useState([]);
+   const [xpLevel, setXpLevel] = useState([]);
     let stopEffect = 1;
 
     useEffect(() => {
@@ -16,10 +17,21 @@ function CardioGraph() {
             console.log(response);
             setCardioData(response.data);
         });
+
+        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
+            console.log(response);
+            console.log(localStorage.getItem("id"));
+            console.log("hi");
+            setXpLevel(response.data);
+        });
+
     }, [stopEffect])
 
     return (
         <>
+        {
+        localStorage.getItem("id") == null && <Navigate to={"/"} refresh={true} />
+        }
             <body>
             <div align="Center">
             

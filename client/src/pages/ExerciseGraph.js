@@ -12,12 +12,18 @@ function ExerciseGraph() {
 
 
     const [exerciseData, setExerciseData] = useState([]);
+    const [xpLevel, setXpLevel] = useState([]);
     let stopEffect = 1;
 
     useEffect(() => {
         Axios.get("http://localhost:8080/exerciseData", { params: { id: localStorage.getItem("id"), exerciseName: localStorage.getItem('selectedExercise') } }).then((response) => {
             console.log(response);
             setExerciseData(response.data);
+        });
+
+        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
+            console.log(response);
+            setXpLevel(response.data);
         });
     }, [stopEffect]);
 
@@ -33,6 +39,9 @@ function ExerciseGraph() {
 
     return (
         <>
+        {
+        localStorage.getItem("id") == null && <Navigate to={"/"} refresh={true} />
+        }
             <body>
             <div align="Center">
             <h1>{localStorage.getItem('selectedExercise')}</h1>
