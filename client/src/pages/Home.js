@@ -9,12 +9,16 @@ function Home() {
     const [xpLevel, setXpLevel] = useState([]);
     let stopEffect = 1;
 
+    //Every time the page is loaded, we will get the experience and level of the user so 
+    //that it can be displayed.
     useEffect(() => {
         Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
             console.log(response);
             setXpLevel(response.data);
         });
     }, [stopEffect])
+
+    //If a user is not logged in, they will be redirected to a different home page.
     if(localStorage.getItem("id") == null){
         return (
             <div className='HomePage' style={{background: '#FAEBD7'}}>
@@ -34,6 +38,11 @@ function Home() {
                         <br></br>
                         <br></br>
                         <br></br>
+
+                        {/* 
+                        This is a simple home page with 2 buttons to allow users
+                        to test out our 2 main functionalities.
+                        */}
     
                         <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} variant="contained" href='/ExerciseSelectLog'>Log Exercises</Button>
     

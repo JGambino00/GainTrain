@@ -12,6 +12,8 @@ function CardioGraph() {
     const [cardioData, setCardioData] = useState([]);
     let stopEffect = 1;
 
+    //Every time this page is loaded, we will be getting information for the exercise that was selected using
+    //the cardioData API call. We will also get the experience and level of the user using the xpLevel API call.
     useEffect(() => {
         Axios.get("http://localhost:8080/cardioData", { params: { id: localStorage.getItem("id"), exerciseName: localStorage.getItem('selectedExercise') } }).then((response) => {
             console.log(response);
@@ -30,7 +32,8 @@ function CardioGraph() {
     let speedData = [];
     let index = 0;
 
-    
+    //This for loop fills up 2 arrays with the information that 
+    //will be necessary for our graphs.
     for (let i = 0; i < cardioData.length; i++) {
         minsData[i] = { mins: cardioData[i].Mins, time: i }
         speedData[i] = { speed: cardioData[i].Speed, time: i}
@@ -56,7 +59,9 @@ function CardioGraph() {
                     <Paper>
                         <br></br>
                         <br></br>
-
+                        {/*
+                        Below, we can find how the charts are made for both the minutes and speed progress of the users.
+                        */}
                         <Chart data={minsData}>
                             <Title text={`Minutes Progress`} />
                             <ArgumentAxis />
@@ -74,6 +79,12 @@ function CardioGraph() {
                             <LineSeries valueField='speed' argumentField='time' />
                         </Chart>
                     </Paper>
+
+                    <br></br>
+                    <br></br>
+
+                        <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} href='/ExerciseSelectGraph' variant="contained">Back</Button>
+
                 </div>
 
             </body>

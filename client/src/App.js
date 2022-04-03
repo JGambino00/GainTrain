@@ -20,7 +20,7 @@ import Common from './components/Common'
 
 function App() {
 
-    // on correct authentication check (logged in) set role and id in localstorage (non-sensitive data)
+    // On correct authentication check (logged in) set role and id in localstorage (non-sensitive data)
     function checkAuth() {
         return new Promise(((resolve, reject) => {
             axios.get(

@@ -13,12 +13,8 @@ let pages = [];
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const [user, setUser] = React.useState(null);
     const [pagesTest, setPagesTest] = React.useState([]);
-    const [xpLevel, setXpLevel] = React.useState([]);
-    var [count, setCount] = React.useState(); //number of notifications set as count
 
-    let test = 1;
 
     //Handles all the possiblity for the menu
     const handleOpenNavMenu = (event) => {
@@ -35,6 +31,7 @@ const ResponsiveAppBar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    
     // instantiate navbar differently depending on correct role
     function instantiateNavBar() {
         {
@@ -67,16 +64,9 @@ const ResponsiveAppBar = () => {
         });
     }
 
-    function getXpLevel() {
-        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
-            console.log(response);
-            setXpLevel(response.data);
-        });
-    }
     // these  functions are called when navbar is rendered
     useEffect(() => {
         instantiateNavBar();
-        getXpLevel();
     }, [])
 
 

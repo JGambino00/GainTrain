@@ -11,6 +11,8 @@ function ExerciseInput() {
 
     let exercise = localStorage.getItem("selectedExercise");
 
+    //When the user submits the values for their exercise, this method will run a post
+    //so that it can be put into the database.
     let submitExercise = (event) => { //When clicking the REQUEST SYMPTOM FORM button, this will update the SymptomRequested attribute in the patient tale to true
         console.log(event.currentTarget);
         const data = new FormData(event.currentTarget)
@@ -31,6 +33,8 @@ function ExerciseInput() {
 
     let stopEffect = 1;
 
+    //Every time the page is loaded, we will get the experience and level of the user so 
+    //that it can be displayed.
     useEffect(() => {
         Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
             localStorage.setItem("xp", response.data[0].Experience);
@@ -51,6 +55,9 @@ function ExerciseInput() {
                 </div>
                 <div align="Center">
                     <h1 id='change'>{exercise}</h1>
+                     {/*
+                    Below, we can see all the different fields that the user can fill to describe the exercise that they performed.
+                    */}
                     <Paper elevation={0} component="form" onSubmit={submitExercise}>
                         <FormControl onSubmit={submitExercise}>
                             <TextField

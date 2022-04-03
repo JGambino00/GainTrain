@@ -10,6 +10,8 @@ function ExerciseSelectGraph() {
 
     let stopEffect = 1;
 
+    //Every time the page is loaded, we will get the experience and level of the user so 
+    //that it can be displayed.
     useEffect(() => {
         Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
             localStorage.setItem("xp", response.data[0].Experience);
@@ -18,11 +20,15 @@ function ExerciseSelectGraph() {
         });
     }, [stopEffect])
 
+    //When a user selects a non-cardio exercise, this function will run
+    //to redirect users to a page with graphs to display their progress.
     let handleChange = (event) => {
         localStorage.setItem("selectedExercise", event.target.value);
         window.location = "/ExerciseGraph";
     }
 
+    //When a user selects a cardio exercise, this function will run
+    //to redirect users to a page with graphs to display their progress.
     let handleChangeCardio = (event) => {
         localStorage.setItem("selectedExercise", event.target.value);
         window.location = "/CardioGraph";
@@ -35,6 +41,12 @@ function ExerciseSelectGraph() {
                 </div>
             <div align="Center">
                 <h1>Select an Exercise to See Progress:</h1>
+                {/*
+                Below, we can find a drop down select menu for every exercise group.
+                Everyone of the drop down select menus includes different exercises.
+                Once one of the exercises is selected, the user will be redirected to 
+                a page with graphs displaying their progress for that exercise.
+                */}
                 <FormControl style={{ minWidth: 250 }}>
                     <InputLabel id="Abs">Abs</InputLabel>
                     <Select

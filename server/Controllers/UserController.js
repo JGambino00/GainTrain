@@ -26,7 +26,7 @@ UserController.use(function (req, res, next) {
     next();
 });
 
-// start of sign up and login. creating correct cookies if logged in
+// Start of sign up and login. creating correct cookies if logged in
 UserController.get('/checkAuth', function (req, res) {
     if (!req.cookies) {
         res.status(403).send();
@@ -52,12 +52,9 @@ UserController.post("/Login", async (req, res) => {
         }
         let email = req.body.email;
 
-        //query statement
+
         let state = `SELECT U.Email, U.ID FROM users U WHERE U.Email = "${email}";`;
 
-        //console.log(state) // used to verify the query
-        //parameters: Email
-        //returns: 
         db.query(state, async (err, result) => {
                 try {
                     if (err) {
@@ -76,8 +73,7 @@ UserController.post("/Login", async (req, res) => {
                                         res.status(403).send();
                                     } else {
                                         let update = `UPDATE users SET Token = "${token}" WHERE email = "${email}"`
-                                        //parameters: Token, Email
-                                        //returns: 
+
                                         db.query(update, async (err2, result2) => {
                                             if (err2) {
                                                 console.log("err2: " + err2)
@@ -105,12 +101,10 @@ UserController.post("/Login", async (req, res) => {
     }
 })
 
-//getting the email and passowrd from the form
+//Getting the email and passowrd from the form
 UserController.post("/Signup", async (req, res) => {
     let existing = false;
     let uid;
-    //parameters: Email
-    //returns: ID, FName, LName, Email, Password, Validated, Phone, Birthday, Address, Role, Token
     let state = "SELECT * FROM gaintrain.users U WHERE U.email = ?"
     db.query(state, [req.body.email], async (err, result) => {
 
@@ -118,9 +112,7 @@ UserController.post("/Signup", async (req, res) => {
             existing = true;
         }
     });
-    // select last auto increment
-    //parameters: 
-    //returns: ID
+
     let state2 = `SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = "gaintrain" AND TABLE_NAME = "users"`
     db.query(state2, [], async (err, result) => {
 
@@ -137,8 +129,7 @@ UserController.post("/Signup", async (req, res) => {
 
 
         if (existing === false) {
-            //parameters:FName, LName, Email, Password, Validated, Phone, Role
-            //returns: 
+
             db.query(state, [firstName, lastName, email, 0, 1], function (err, result) {//ID might be removed since it should be auto indent
                 if (err) {
                     console.log(err)
@@ -157,8 +148,9 @@ UserController.post("/Signup", async (req, res) => {
 
     }
 })
-// end of sign up and login
 
+//Takes in the values that the user submitted for their exercise and inputs it
+//into the database. Also alters the experience points and level of the user.
 UserController.post("/submitExercise", (req, res) => {
 
     var id = req.body.id;
@@ -224,7 +216,7 @@ UserController.post("/submitExercise", (req, res) => {
 
 });
 
-
+//Returns the current experience points and levels for the user.
 UserController.get("/xpLevel", (req, res) => {
     let id = req.query.id;
     let state = "SELECT Experience, Level FROM gaintrain.users WHERE ID=?";
@@ -241,6 +233,8 @@ UserController.get("/xpLevel", (req, res) => {
     
 })
 
+//Takes in the values that the user submitted for their exercise and inputs it
+//into the database. Also alters the experience points and level of the user.
 UserController.post("/submitCardio", (req, res) => {
 
     let id = req.body.id;
@@ -305,8 +299,9 @@ UserController.post("/submitCardio", (req, res) => {
     );
 });
 
+//Returns the data for every instance of a specific 
+//non-cardio  exercise for a user in chronological order
 UserController.get("/exerciseData", (req, res) => {
-    //parameters:
     let id = req.query.id;
     let exerciseName = req.query.exerciseName;
     let state = "SELECT Sets, Reps, Weight, Timestamp FROM gaintrain.exercises WHERE ID = ? AND ExerciseName = ? ORDER BY Timestamp ASC;"
@@ -319,6 +314,8 @@ UserController.get("/exerciseData", (req, res) => {
     })
 });
 
+//Returns the data for every instance of a specific 
+//cardio  exercise for a user in chronological order
 UserController.get("/cardioData", (req, res) => {
     //parameters:
     let id = req.query.id;

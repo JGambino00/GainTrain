@@ -76,7 +76,7 @@ function Signup() {
                 {emailError}
               </Grid>
             </Grid>
-            {/* Burron for submit */}
+            {/* Button for submit */}
             <div onClick={submit}> 
               <Button type="submit" fullWidth variant="contained" sx={{ background: '#ED7014', mt: 3, mb: 2 }}>
                 Sign Up

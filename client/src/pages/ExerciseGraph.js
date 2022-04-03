@@ -14,6 +14,8 @@ function ExerciseGraph() {
     const [exerciseData, setExerciseData] = useState([]);
     let stopEffect = 1;
 
+    //Every time this page is loaded, we will be getting information for the exercise that was selected using
+    //the exerciseData API call. We will also get the experience and level of the user using the xpLevel API call.
     useEffect(() => {
         Axios.get("http://localhost:8080/exerciseData", { params: { id: localStorage.getItem("id"), exerciseName: localStorage.getItem('selectedExercise') } }).then((response) => {
             console.log(response);
@@ -35,6 +37,8 @@ function ExerciseGraph() {
 
     exerciseData.map(el => setRep.push([el.Sets, el.Reps]))
     
+    //This for loop fills up 2 arrays with the information that 
+    //will be necessary for our graphs.
     for (let i = 0; i < setRep.length; i++) {
         //totalReps[i] = { totReps: setRep[i][0] * setRep[i][1], time: exerciseData[i].Timestamp }
         totalReps[i] = { totReps: setRep[i][0] * setRep[i][1], time: i }
@@ -55,7 +59,9 @@ function ExerciseGraph() {
                     <Paper>
                         <br></br>
                         <br></br>
-
+                        {/*
+                        Below, we can find how the charts are made for both the minutes and speed progress of the users.
+                        */}
                         <Chart data={weightData}>
                             <Title text={`Weight Progress`} />
                             <ArgumentAxis />
@@ -73,6 +79,11 @@ function ExerciseGraph() {
                             <LineSeries valueField='totReps' argumentField='time' />
                         </Chart>
                     </Paper>
+
+                    <br></br>
+                        <br></br>
+
+                        <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} href='/ExerciseSelectGraph' variant="contained">Back</Button>
                 </div>
 
             </body>

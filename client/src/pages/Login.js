@@ -24,7 +24,7 @@ class Login extends Component {
 
     }
 
-    // on login remove errors. if errors set errors. if not login and reload page. will be redirected in render
+    //On login remove errors. if errors set errors. If not login and reload page. Will be redirected in render.
     onLogin() {
         this.setState({ unvalidated: '' })
         this.setState({ wrongCredentials: '' })
@@ -44,13 +44,7 @@ class Login extends Component {
             }))
 
         }).catch((err => {
-            //Checks if the credentials are valid but the doctor has not yet been validated 
-            if (err.response.status === 405) {
-                this.setState({ unvalidated: 'Please wait for validation!' })
-            } else {
-                this.setState({ wrongCredentials: 'You have entered the wrong credentials!' })
-
-            }
+            console.log(err);
         }));
     }
 

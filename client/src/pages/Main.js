@@ -10,6 +10,8 @@ function Main() {
 
     let stopEffect = 1;
 
+    //Every time the page is loaded, we will get the experience and level of the user so 
+    //that it can be displayed.
     useEffect(() => {
         Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
             localStorage.setItem("xp", response.data[0].Experience);
@@ -31,7 +33,11 @@ function Main() {
                     <br></br>
                     <br></br>
                     <br></br>
-
+                    
+                    {/* 
+                    This is a simple home page with 2 buttons to allow users
+                    to test out our 2 main functionalities.
+                    */}
                     <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} variant="contained" href='/ExerciseSelectLog'>Log Exercises</Button>
 
                     <br></br>
