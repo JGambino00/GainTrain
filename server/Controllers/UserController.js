@@ -12,6 +12,7 @@ const UserController = express.Router()
 
 UserController.use(express.json());
 UserController.use(cookieParser());
+//Comment out what's below?
 UserController.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 UserController.use(express.static(path.join(__dirname, "../client/build")));
 UserController.use(express.static(__dirname + "../client/public/"));

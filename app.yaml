@@ -5,7 +5,7 @@ env: standard
 env_variables:
   SQL_USER: root
   SQL_PASSWORD: root
-  SQL_DATABASE: cloudscratch
+  SQL_DATABASE: gaintrain
   #   e.g. my-awesome-project:us-central1:my-cloud-sql-instance
   INSTANCE_CONNECTION_NAME: sunlit-form-338718:northamerica-northeast1:sql-scratch-pw-root
 # [END gae_mysql_env]
@@ -15,20 +15,31 @@ handlers:
     secure: always
     script: auto
 
-  - url: /Login
+  - url: /Login 
     static_files: client/build/index.html
     upload: client/build/index.html
   - url: /Signup
     static_files: client/build/index.html
     upload: client/build/index.html
-  - url: /DoctorDashboard
+
+  - url: /CardioGraph
     static_files: client/build/index.html
     upload: client/build/index.html
-  - url: /PatientProfile
+  - url: /CardioInput
     static_files: client/build/index.html
     upload: client/build/index.html
-  - url: /AdminDashboard
+  - url: /ExerciseGraph
     static_files: client/build/index.html
     upload: client/build/index.html
+  - url: /ExerciseInput
+    static_files: client/build/index.html
+    upload: client/build/index.html
+  - url: /ExerciseSelectGraph
+    static_files: client/build/index.html
+    upload: client/build/index.html
+  - url: /ExerciseSelectLog
+    static_files: client/build/index.html
+    upload: client/build/index.html
+    
 beta_settings:
   cloud_sql_instances: sunlit-form-338718:northamerica-northeast1:sql-scratch-pw-root

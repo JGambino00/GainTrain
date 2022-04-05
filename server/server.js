@@ -1,6 +1,7 @@
 const app = require('./app.js'),
 server = require('http').createServer(app);
 const {Server} = require('socket.io');
+//Comment this out?
 const io = new Server(server, {
     cors: {
         origin: "http://localhost:3000", //This tells the socket which port the frontend is running on so it can track
