@@ -12,7 +12,7 @@ function Home() {
     //Every time the page is loaded, we will get the experience and level of the user so 
     //that it can be displayed.
     useEffect(() => {
-        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
+        Axios.get("https://primal-graph-346315.nn.r.appspot.com/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
             console.log(response);
             setXpLevel(response.data);
         });

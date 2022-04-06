@@ -24,7 +24,7 @@ function App() {
     function checkAuth() {
         return new Promise(((resolve, reject) => {
             axios.get(
-                "http://localhost:8080/checkAuth", { withCredentials: true }).then(res => {
+                "https://primal-graph-346315.nn.r.appspot.com/checkAuth", { withCredentials: true }).then(res => {
                     localStorage.setItem("role", res.data.role)
                     localStorage.setItem("id", res.data.id)
                     resolve(res.data);

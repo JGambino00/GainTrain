@@ -17,7 +17,7 @@ function ExerciseInput() {
         console.log(event.currentTarget);
         const data = new FormData(event.currentTarget)
         console.log('hello');
-        Axios.post("http://localhost:8080/submitExercise", {
+        Axios.post("https://primal-graph-346315.nn.r.appspot.com/submitExercise", {
             id: localStorage.getItem("id"),
             exerciseName: localStorage.getItem("selectedExercise"),
             sets: data.get('Sets'),
@@ -36,7 +36,7 @@ function ExerciseInput() {
     //Every time the page is loaded, we will get the experience and level of the user so 
     //that it can be displayed.
     useEffect(() => {
-        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
+        Axios.get("https://primal-graph-346315.nn.r.appspot.com/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
             localStorage.setItem("xp", response.data[0].Experience);
             localStorage.setItem("lev", response.data[0].Level);
             console.log(response.data);

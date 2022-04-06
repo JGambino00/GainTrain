@@ -12,7 +12,7 @@ function Signup() {
     event1.preventDefault();
     const data = new FormData(event1.currentTarget);
     if (validator.isEmail(data.get('email'))) {
-      Axios.post('http://localhost:8080/Signup', {
+      Axios.post('https://primal-graph-346315.nn.r.appspot.com/SignupAPI', {
         firstName: data.get('firstName'),
         lastName: data.get('lastName'),
         email: data.get('email')

@@ -28,7 +28,7 @@ class Login extends Component {
     onLogin() {
         this.setState({ unvalidated: '' })
         this.setState({ wrongCredentials: '' })
-        Axios.post('http://localhost:8080/Login', {
+        Axios.post('https://primal-graph-346315.nn.r.appspot.com/LoginAPI', {
             email: this.state.email
         }, { withCredentials: true }).then(() => {
             //If the login credentials are valid, the user will be logged in

@@ -2,7 +2,7 @@ const express = require("express");
 const db = require("../database");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const cors = require("cors");
+//const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -13,7 +13,7 @@ const UserController = express.Router()
 UserController.use(express.json());
 UserController.use(cookieParser());
 //Comment out what's below?
-UserController.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+//UserController.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 UserController.use(express.static(path.join(__dirname, "../client/build")));
 UserController.use(express.static(__dirname + "../client/public/"));
 UserController.use(bodyParser.urlencoded({extended: true}));
@@ -45,7 +45,7 @@ UserController.get('/checkAuth', function (req, res) {
 
 
 //getting the email and passowrd from the form
-UserController.post("/Login", async (req, res) => {
+UserController.post("/LoginAPI", async (req, res) => {
     try {
         //fields were provided by the front end form
         if (!req.body.email) {
@@ -103,7 +103,7 @@ UserController.post("/Login", async (req, res) => {
 })
 
 //Getting the email and passowrd from the form
-UserController.post("/Signup", async (req, res) => {
+UserController.post("/SignupAPI", async (req, res) => {
     let existing = false;
     let uid;
     let state = "SELECT * FROM gaintrain.users U WHERE U.email = ?"
@@ -143,8 +143,11 @@ UserController.post("/Signup", async (req, res) => {
         }
         // final send
         else
+        {console.log("hey");
+        res.status(500).send()}
             res.status(500).send()
     } catch {
+        console.log("catch");
         res.status(500).send()
 
     }

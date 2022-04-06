@@ -17,12 +17,12 @@ function ExerciseGraph() {
     //Every time this page is loaded, we will be getting information for the exercise that was selected using
     //the exerciseData API call. We will also get the experience and level of the user using the xpLevel API call.
     useEffect(() => {
-        Axios.get("http://localhost:8080/exerciseData", { params: { id: localStorage.getItem("id"), exerciseName: localStorage.getItem('selectedExercise') } }).then((response) => {
+        Axios.get("https://primal-graph-346315.nn.r.appspot.com/exerciseData", { params: { id: localStorage.getItem("id"), exerciseName: localStorage.getItem('selectedExercise') } }).then((response) => {
             console.log(response);
             setExerciseData(response.data);
         });
 
-        Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
+        Axios.get("https://primal-graph-346315.nn.r.appspot.com/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
             localStorage.setItem("xp", response.data[0].Experience);
             localStorage.setItem("lev", response.data[0].Level);
             console.log(response.data);

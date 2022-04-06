@@ -4,16 +4,17 @@ env: standard
 
 env_variables:
   SQL_USER: root
-  SQL_PASSWORD: root
+  SQL_PASSWORD: "@Root1234"
   SQL_DATABASE: gaintrain
+  ACCESS_TOKEN_SECRET: e061f7ff3c6fe008e273e70c97e1edf0ddd8963e3c0e07366646ff0e37ff4cccf16ece8728e634e8ac3158279f112bbb13443f943de717350ddf4e3d05778b0f
   #   e.g. my-awesome-project:us-central1:my-cloud-sql-instance
-  INSTANCE_CONNECTION_NAME: sunlit-form-338718:northamerica-northeast1:sql-scratch-pw-root
+  INSTANCE_CONNECTION_NAME: primal-graph-346315:northamerica-northeast1:gaintrain
 # [END gae_mysql_env]
 
 handlers:
   - url: /
-    secure: always
-    script: auto
+    static_files: client/build/index.html
+    upload: client/build/index.html
 
   - url: /Login 
     static_files: client/build/index.html
@@ -42,4 +43,4 @@ handlers:
     upload: client/build/index.html
     
 beta_settings:
-  cloud_sql_instances: sunlit-form-338718:northamerica-northeast1:sql-scratch-pw-root
+  cloud_sql_instances: primal-graph-346315:northamerica-northeast1:gaintrain

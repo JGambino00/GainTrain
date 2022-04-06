@@ -51,11 +51,11 @@ const ResponsiveAppBar = () => {
 
     function logout() {
         //Clears the local storage which contains all the user's information
-        Axios.post('http://localhost:8080/Logout', {}, { withCredentials: true }).then(() => {
+        Axios.post('https://primal-graph-346315.nn.r.appspot.com/Logout', {}, { withCredentials: true }).then(() => {
             localStorage.clear();
             return new Promise(((resolve, reject) => {
                 axios.get(
-                    "http://localhost:8080/checkAuth", { withCredentials: true }).catch(err => {
+                    "https://primal-graph-346315.nn.r.appspot.com/checkAuth", { withCredentials: true }).catch(err => {
                         window.location.reload();
                     })
             }))
