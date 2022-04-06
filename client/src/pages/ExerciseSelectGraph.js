@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import { FormControl, InputLabel, Select, MenuItem, Grid } from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem, Grid, Button } from '@mui/material';
 import Axios from 'axios';
 import { Navigate } from "react-router-dom";
 import Common from "../components/Common";
@@ -221,6 +221,11 @@ function ExerciseSelectGraph() {
                     </Select>
                 </FormControl>
 
+
+
+                    <br></br>
+
+                        <Button xs={12} sm={3} sx={{ background: '#ED7014', margin: 1 }} href='/' variant="contained">Main</Button>
 
             </div>
             <br></br>

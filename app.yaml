@@ -41,6 +41,9 @@ handlers:
   - url: /ExerciseSelectLog
     static_files: client/build/index.html
     upload: client/build/index.html
+  - url: /Main
+    static_files: client/build/index.html
+    upload: client/build/index.html   
     
 beta_settings:
   cloud_sql_instances: primal-graph-346315:northamerica-northeast1:gaintrain

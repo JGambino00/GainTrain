@@ -103,6 +103,7 @@ function ExerciseInput() {
 
                         </FormControl>
                     </Paper>
+                    
                 </div>
 
             </body>
