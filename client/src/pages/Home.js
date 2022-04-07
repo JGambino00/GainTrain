@@ -21,7 +21,7 @@ function Home() {
     //If a user is not logged in, they will be redirected to a different home page.
     if(localStorage.getItem("id") == null){
         return (
-            <div className='HomePage' style={{background: '#FAEBD7'}}>
+            <div className='HomePage' style={{background: '#F9A668'}}>
                 <h1>
                     GAINTRAIN: FITNESS APPLICATION
                 </h1>
