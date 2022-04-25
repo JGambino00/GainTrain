@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     user: 'root',
     password: 'root',
     database: 'gaintrain',
-    port: process.env.DB_PORT || '3306'
+    port: '3306'
 })
 
 connection.connect();

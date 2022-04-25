@@ -44,7 +44,7 @@ UserController.get('/checkAuth', function (req, res) {
 })
 
 
-//getting the email and passowrd from the form
+//The following code is ran when users try to log in.
 UserController.post("/Login", async (req, res) => {
     try {
         //fields were provided by the front end form
@@ -66,13 +66,9 @@ UserController.post("/Login", async (req, res) => {
                             throw err;
                         } else if (await email === result[0].Email) {
 
-                            //await needs "async" in the 'parent'
+                            //Where the logging in actually occurs.
                             if (jwt.sign(email, process.env.ACCESS_TOKEN_SECRET, (error, token) => {
-                                    if (error) {
-                                        console.log('Wrong Password');
-                                        console.log(error)
-                                        res.status(403).send();
-                                    } else {
+                                    
                                         let update = `UPDATE users SET Token = "${token}" WHERE email = "${email}"`
 
                                         db.query(update, async (err2, result2) => {
@@ -84,7 +80,7 @@ UserController.post("/Login", async (req, res) => {
                                                 res.sendStatus(200);
                                             }
                                         })
-                                    }
+                                    
                                 }
                             )
                             ) ;
@@ -102,11 +98,13 @@ UserController.post("/Login", async (req, res) => {
     }
 })
 
-//Getting the email and passowrd from the form
+//The code that is ran when a user tries to sign up
 UserController.post("/Signup", async (req, res) => {
     let existing = false;
     let uid;
     let state = "SELECT * FROM gaintrain.users U WHERE U.email = ?"
+
+    //Check to see whether this email has been used before.
     db.query(state, [req.body.email], async (err, result) => {
 
         if (result.length !== 0) {
@@ -114,6 +112,7 @@ UserController.post("/Signup", async (req, res) => {
         }
     });
 
+    //Setting what the user id will be.
     let state2 = `SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = "gaintrain" AND TABLE_NAME = "users"`
     db.query(state2, [], async (err, result) => {
 
@@ -126,12 +125,13 @@ UserController.post("/Signup", async (req, res) => {
 
         let uid;
 
-        let state = `INSERT INTO gaintrain.users (FName, LName, Email, Experience, Level) VALUES (?,?,?,?,?);`;//figure out how to pass variables i created in
+        //The query that will be ran to set a users information
+        let state = `INSERT INTO gaintrain.users (FName, LName, Email, Experience, Level) VALUES (?,?,?,?,?);`;
 
 
         if (existing === false) {
 
-            db.query(state, [firstName, lastName, email, 0, 1], function (err, result) {//ID might be removed since it should be auto indent
+            db.query(state, [firstName, lastName, email, 0, 1], function (err, result) {
                 if (err) {
                     console.log(err)
                     res.sendStatus(500);
