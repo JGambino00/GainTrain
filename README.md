@@ -32,6 +32,6 @@ CREATE TABLE `exercises` (
 ) ;
 
 Now that the tables have been setup in MySQL, we need to download all of the modules that are used in the project. Open up the terminal and make your way to the
-/client and /server directories. You can then run the command 'npm install' to install all of our dependencies. Once that has been done, you can use the command
+/client, /server and / directories. You can then run the command 'npm install' to install all of our dependencies. Once that has been done, you can use the command
 'npm start' in both /client and /server to start running the website locally.
 
