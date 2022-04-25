@@ -10,7 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Route, Routes } from 'react-router-dom';
 import Footer from './components/Footer.js';
 import Navbar from './components/Navbar.js';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import Home from './pages/Home';
 import Main from './pages/Main';

@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Paper, Button } from '@mui/material';
+import { useEffect } from 'react';
+import { FormControl, TextField, Paper, Button } from '@mui/material';
 import Axios from 'axios';
 import { Navigate } from "react-router-dom";
-import Common from "../components/Common";
 
 function CardioInput() {
 
@@ -25,9 +23,8 @@ function CardioInput() {
     //When the user submits the values for their exercise, this method will run a post
     //so that it can be put into the database.
     let submitCardio = (event) => {
-        console.log(event.currentTarget);
         const data = new FormData(event.currentTarget)
-        console.log('hello');
+
         Axios.post("http://localhost:8080/submitCardio", {
             id: localStorage.getItem("id"),
             exerciseName: localStorage.getItem("selectedExercise"),

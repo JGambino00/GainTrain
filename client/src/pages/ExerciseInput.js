@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Button, Paper, Link } from '@mui/material';
+import { useEffect } from 'react';
+import { FormControl, TextField, Button, Paper } from '@mui/material';
 import Axios from 'axios';
 import { Navigate } from "react-router-dom";
-import Common from "../components/Common";
 
 
 function ExerciseInput() {
@@ -13,10 +11,8 @@ function ExerciseInput() {
 
     //When the user submits the values for their exercise, this method will run a post
     //so that it can be put into the database.
-    let submitExercise = (event) => { //When clicking the REQUEST SYMPTOM FORM button, this will update the SymptomRequested attribute in the patient tale to true
-        console.log(event.currentTarget);
+    let submitExercise = (event) => { //When clicking the SUBMIT button this will send the exercise data to the exercise table in the DB
         const data = new FormData(event.currentTarget)
-        console.log('hello');
         Axios.post("http://localhost:8080/submitExercise", {
             id: localStorage.getItem("id"),
             exerciseName: localStorage.getItem("selectedExercise"),
@@ -39,7 +35,6 @@ function ExerciseInput() {
         Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
             localStorage.setItem("xp", response.data[0].Experience);
             localStorage.setItem("lev", response.data[0].Level);
-            console.log(response.data);
 
         });
     }, [stopEffect])

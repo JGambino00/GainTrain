@@ -226,7 +226,6 @@ UserController.get("/xpLevel", (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                console.log(result);
                 res.send(result);
             }
         }
@@ -247,7 +246,6 @@ UserController.post("/submitCardio", (req, res) => {
     let mins = req.body.mins;
     let speed = req.body.speed;
     
-    console.log(req.body);
  
     let state = "INSERT INTO gaintrain.exercises (ID, ExerciseName, Sets, Reps, Weight, Mins, Speed, Timestamp) VALUES (?,?,?,?,?,?,?,?)"
     db.query(state, [id, exerciseName, sets, reps, weight, mins, speed, timestamp],
@@ -270,7 +268,7 @@ UserController.post("/submitCardio", (req, res) => {
                 if(currentxp===9){
                     let newXp=0;
                     let newLevel=currentlevel+1;
-
+                    //update users level when submitting an exercise
                     let state3 = "UPDATE gaintrain.users SET Experience=?, Level=? WHERE ID=?"
                     db.query(state3, [newXp, newLevel, id],
                         (err, result) => {
@@ -283,7 +281,7 @@ UserController.post("/submitCardio", (req, res) => {
                     );
                 }else{
                     let newXp=currentxp+1;
-
+                    //update users experience when submitting an exercise
                     let state4 = "UPDATE gaintrain.users SET Experience=? WHERE ID=?"
                     db.query(state4, [newXp, id],
                         (err, result) => {

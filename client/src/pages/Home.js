@@ -2,8 +2,7 @@ import '../components/Home.css';
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import Axios from 'axios';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Paper, Button } from '@mui/material';
-import { Navigate } from "react-router-dom";
+import { Button } from '@mui/material';
 
 function Home() {
     const [xpLevel, setXpLevel] = useState([]);
@@ -13,7 +12,6 @@ function Home() {
     //that it can be displayed.
     useEffect(() => {
         Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id")} }).then((response) => {
-            console.log(response);
             setXpLevel(response.data);
         });
     }, [stopEffect])
@@ -21,7 +19,7 @@ function Home() {
     //If a user is not logged in, they will be redirected to a different home page.
     if(localStorage.getItem("id") == null){
         return (
-            <div className='HomePage' style={{background: '#FAEBD7'}}>
+            <div className='HomePage' style={{background: 'rgb(249, 166, 104)'}}>
                 <h1>
                     GAINTRAIN: FITNESS APPLICATION
                 </h1>

@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Paper, Button } from '@mui/material';
+import { useEffect } from 'react';
+import { Button } from '@mui/material';
 import Axios from 'axios';
 import { Navigate } from "react-router-dom";
-import Common from "../components/Common";
 
 function Main() {
 
@@ -16,7 +14,6 @@ function Main() {
         Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
             localStorage.setItem("xp", response.data[0].Experience);
             localStorage.setItem("lev", response.data[0].Level);
-            console.log(response.data);
         });
     }, [stopEffect])
 

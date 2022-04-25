@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import { FormControl, InputLabel, Select, MenuItem, Grid } from '@mui/material';
+import { useEffect } from 'react';
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import Axios from 'axios';
-import { Navigate } from "react-router-dom";
-import Common from "../components/Common";
 
 function ExerciseSelectGraph() {
 
@@ -16,7 +13,6 @@ function ExerciseSelectGraph() {
         Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
             localStorage.setItem("xp", response.data[0].Experience);
             localStorage.setItem("lev", response.data[0].Level);
-            console.log(response.data);
         });
     }, [stopEffect])
 
@@ -52,7 +48,6 @@ function ExerciseSelectGraph() {
                     <Select
                         labelId="Abs"
                         id="demo-simple-select"
-                        // value={age}
                         label="Abs"
                         onChange={handleChange}
                     >
@@ -70,7 +65,6 @@ function ExerciseSelectGraph() {
                     <Select
                         labelId="Back"
                         id="demo-simple-select"
-                        // value={age}
                         label="Back"
                         onChange={handleChange}
                     >
@@ -92,7 +86,6 @@ function ExerciseSelectGraph() {
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        // value={age}
                         label="Biceps"
                         onChange={handleChange}
                     >
@@ -113,7 +106,6 @@ function ExerciseSelectGraph() {
                     <Select
                         labelId="Cardio"
                         id="demo-simple-select"
-                        // value={age}
                         label="Cardio"
                         onChange={handleChangeCardio}
                     >
@@ -134,7 +126,6 @@ function ExerciseSelectGraph() {
                     <Select
                         labelId="Chest"
                         id="demo-simple-select"
-                        // value={age}
                         label="Chest"
                         onChange={handleChange}
                     >
@@ -159,7 +150,6 @@ function ExerciseSelectGraph() {
                     <Select
                         labelId="Legs"
                         id="demo-simple-select"
-                        // value={age}
                         label="Legs"
                         onChange={handleChange}
                     >
@@ -185,7 +175,6 @@ function ExerciseSelectGraph() {
                     <Select
                         labelId="Shoulder"
                         id="demo-simple-select"
-                        // value={age}
                         label="Shoulders"
                         onChange={handleChange}
                     >
@@ -208,7 +197,6 @@ function ExerciseSelectGraph() {
                     <Select
                         labelId="Triceps"
                         id="demo-simple-select"
-                        // value={age}
                         label="Triceps"
                         onChange={handleChange}
                     >

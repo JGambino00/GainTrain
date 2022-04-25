@@ -16,7 +16,6 @@ class Login extends Component {
         super(props, context);
         this.state = {
             email: "",
-            password: "",
             wrongCredentials: "",
             unvalidated: ""
         };
@@ -66,7 +65,7 @@ class Login extends Component {
                             Sign in
                         </Typography>
                         <Box sx={{ mt: 1 }}>
-                            {/* Getting the email and password from user */}
+                            {/* Getting the email from user */}
                             <TextField margin="normal" required fullWidth id="email" label="Email Address" name="email"
                                 autoComplete="email" value={this.state.email}
                                 onChange={(ev) => this.setState({ email: ev.target.value })} autoFocus />

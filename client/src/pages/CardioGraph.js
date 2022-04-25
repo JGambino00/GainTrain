@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
 import Axios from 'axios';
 import { Navigate } from "react-router-dom";
-import Common from "../components/Common";
-import { FormControl, InputLabel, TextField, Select, MenuItem, Grid, Button, Paper } from '@mui/material';
-import { Chart, ArgumentAxis, ValueAxis, LineSeries, Title, Legend, } from '@devexpress/dx-react-chart-material-ui';
+import { Button, Paper } from '@mui/material';
+import { Chart, ArgumentAxis, ValueAxis, LineSeries, Title } from '@devexpress/dx-react-chart-material-ui';
 
 function CardioGraph() {
 
     const [cardioData, setCardioData] = useState([]);
-    let stopEffect = 1;
+    let stopEffect = 1; //Allows use effect to only run once when a page is loaded
 
     //Every time this page is loaded, we will be getting information for the exercise that was selected using
     //the cardioData API call. We will also get the experience and level of the user using the xpLevel API call.
@@ -19,7 +17,7 @@ function CardioGraph() {
             console.log(response);
             setCardioData(response.data);
         });
-
+        //the xplevel API call is done everytime the page is loaded to update any change in level or experience for the user
         Axios.get("http://localhost:8080/xpLevel", { params: { id: localStorage.getItem("id") } }).then((response) => {
             localStorage.setItem("xp", response.data[0].Experience);
             localStorage.setItem("lev", response.data[0].Level);
@@ -30,7 +28,6 @@ function CardioGraph() {
 
     let minsData = [];
     let speedData = [];
-    let index = 0;
 
     //This for loop fills up 2 arrays with the information that 
     //will be necessary for our graphs.
@@ -38,9 +35,6 @@ function CardioGraph() {
         minsData[i] = { mins: cardioData[i].Mins, time: i }
         speedData[i] = { speed: cardioData[i].Speed, time: i}
     }
-
-    console.log(minsData);
-    console.log(speedData);
 
     const format = () => tick => tick;
 
@@ -60,7 +54,7 @@ function CardioGraph() {
                         <br></br>
                         <br></br>
                         {/*
-                        Below, we can find how the charts are made for both the minutes and speed progress of the users.
+                        Below, we can find how the charts are made for both the minutes and speed progress of the users. Note: time is always the argument field (x value)
                         */}
                         <Chart data={minsData}>
                             <Title text={`Minutes Progress`} />

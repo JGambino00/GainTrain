@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
-import { Container, Typography, Box, Grid, Link, Checkbox, FormControlLabel, TextField, CssBaseline, Button, Avatar, MenuItem, stepConnectorClasses } from '@mui/material'
+import { Container, Typography, Box, Grid, Link, TextField, CssBaseline, Button, Avatar } from '@mui/material'
 import Axios from 'axios';
 import validator from 'validator';
 import { Navigate } from "react-router-dom";
@@ -24,8 +24,6 @@ function Signup() {
 
 
   };
- 
-  console.log(localStorage.getItem("selectedExercise"));
 
   // remove error message after new submit
   const submit = () => {
